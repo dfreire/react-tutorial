@@ -2,7 +2,6 @@ import React from "react";
 
 import Square from "./Square";
 
-// step-7.1
 const calculateWinner = squares => {
   const lines = [
     [0, 1, 2],
@@ -23,20 +22,22 @@ const calculateWinner = squares => {
   return null;
 };
 
+// step-8.1
+const INITIAL_STATE = {
+  squares: Array(9).fill(null),
+  next: "X",
+  winner: null
+};
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      next: "X",
-      // step-7.2
-      winner: null
-    };
+    // step-8.2
+    this.state = { ...INITIAL_STATE };
   }
 
   handleClick(i) {
     const squares = [...this.state.squares];
-    // step-7.3
     if (squares[i] === null && this.state.winner === null) {
       squares[i] = this.state.next;
       const winner = calculateWinner(squares);
@@ -58,7 +59,6 @@ class Board extends React.Component {
   }
 
   render() {
-    // step-7.4
     const { winner } = this.state;
     let status;
     if (winner !== null) {
@@ -85,6 +85,14 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+        {/* step-8.3 */}
+        {winner !== null && (
+          <div>
+            <button onClick={() => this.setState({ ...INITIAL_STATE })}>
+              New Game
+            </button>
+          </div>
+        )}
       </div>
     );
   }
