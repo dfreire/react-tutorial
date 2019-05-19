@@ -1,4 +1,4 @@
-// TUT-0
+// step-0
 
 class ShoppingList extends React.Component {
   render() {
