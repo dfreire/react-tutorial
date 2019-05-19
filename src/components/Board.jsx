@@ -2,22 +2,49 @@ import React from "react";
 
 import Square from "./Square";
 
+// step-7.1
+const calculateWinner = squares => {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+};
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
-      // step-6.1
-      next: "X"
+      next: "X",
+      // step-7.2
+      winner: null
     };
   }
 
   handleClick(i) {
     const squares = [...this.state.squares];
-    // step-6.2
-    if (squares[i] === null) {
+    // step-7.3
+    if (squares[i] === null && this.state.winner === null) {
       squares[i] = this.state.next;
-      this.setState({ squares, next: this.state.next === "X" ? "0" : "X" });
+      const winner = calculateWinner(squares);
+      if (winner !== null) {
+        this.setState({ squares, winner });
+      } else {
+        this.setState({ squares, next: this.state.next === "X" ? "0" : "X" });
+      }
     }
   }
 
@@ -31,7 +58,14 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = `Next player: ${this.state.next}`;
+    // step-7.4
+    const { winner } = this.state;
+    let status;
+    if (winner !== null) {
+      status = "Winner: " + winner;
+    } else {
+      status = `Next player: ${this.state.next}`;
+    }
 
     return (
       <div>
