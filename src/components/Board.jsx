@@ -5,7 +5,6 @@ import Square from "./Square";
 class Board extends React.Component {
   constructor(props) {
     super(props);
-    // step-4.1
     this.state = {
       squares: Array(9).fill(null)
       // [
@@ -17,14 +16,12 @@ class Board extends React.Component {
   }
 
   handleClick(i) {
-    // step-4.5
     const squares = [...this.state.squares];
     squares[i] = "X";
     this.setState({ squares });
   }
 
   renderSquare(i) {
-    // step-4.2
     return (
       <Square
         value={i}
