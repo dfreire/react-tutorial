@@ -1,16 +1,13 @@
 import React from "react";
 
-// step-1.4
 import Square from "./Square";
 
 class Board extends React.Component {
   renderSquare(i) {
-    // step-1.3
     return <Square />;
   }
 
   render() {
-    // step-1.2
     const status = "Next player: X";
 
     return (

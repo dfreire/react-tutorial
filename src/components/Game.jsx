@@ -1,11 +1,9 @@
 import React from "react";
 
-// step-1.6
 import Board from "./Board";
 
 class Game extends React.Component {
   render() {
-    // step-1.5
     return (
       <div className="game">
         <div className="game-board">
