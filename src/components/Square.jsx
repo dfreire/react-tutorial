@@ -1,22 +1,17 @@
 import React from "react";
 
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      symbol: null // "X" or "O"
-    };
-  }
-
   render() {
     return (
       <button
         className="square"
         onClick={() => {
-          this.setState({ symbol: "X" });
+          // step-4.4
+          this.props.onClick();
         }}
       >
-        {this.state.symbol}
+        {/* step-4.3 */}
+        {this.props.symbol}
       </button>
     );
   }
