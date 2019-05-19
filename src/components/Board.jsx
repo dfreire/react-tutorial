@@ -27,7 +27,6 @@ class Board extends React.Component {
     // step-4.2
     return (
       <Square
-        value={i}
         symbol={this.state.squares[i]}
         onClick={() => this.handleClick(i)}
       />
