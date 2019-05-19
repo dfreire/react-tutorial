@@ -2,7 +2,8 @@ import React from "react";
 
 class Square extends React.Component {
   render() {
-    return <button className="square">{/* TODO */}</button>;
+    // step-2.2
+    return <button className="square">{this.props.value}</button>;
   }
 }
 
